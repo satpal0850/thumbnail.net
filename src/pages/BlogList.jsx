@@ -1,10 +1,17 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { blogs } from '../data/blogs';
+import { Helmet } from 'react-helmet-async';
 import { BookOpen } from 'lucide-react';
 
 const BlogList = () => {
   return (
+    <>
+    <Helmet>
+      <title>Blog | YouTube Thumbnail Download</title>
+      <meta name="description" content="Read our latest tips and guides on using a youtube thumbnail downloader to grow your channel." />
+      <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
+    </Helmet>
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -42,6 +49,7 @@ const BlogList = () => {
         ))}
       </div>
     </motion.div>
+    </>
   );
 };
 

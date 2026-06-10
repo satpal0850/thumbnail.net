@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { Mail, MessageSquare } from 'lucide-react';
 
 const Contact = () => {
   return (
+    <>
+    <Helmet>
+      <title>Contact Us | YouTube Thumbnail Download</title>
+      <meta name="description" content="Contact ThumbDown for any inquiries regarding our youtube thumbnail downloader." />
+      <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
+    </Helmet>
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -34,6 +41,7 @@ const Contact = () => {
         </div>
       </div>
     </motion.div>
+    </>
   );
 };
 

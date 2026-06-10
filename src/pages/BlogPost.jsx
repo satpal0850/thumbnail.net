@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { blogs } from '../data/blogs';
+import { Helmet } from 'react-helmet-async';
 import { ArrowLeft } from 'lucide-react';
 
 const BlogPost = () => {
@@ -17,6 +18,12 @@ const BlogPost = () => {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>{blog.title} | YouTube Thumbnail Download</title>
+      <meta name="description" content={`Read about ${blog.title} and discover how to optimize with a youtube thumbnail downloader.`} />
+      <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
+    </Helmet>
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -40,6 +47,7 @@ const BlogPost = () => {
         dangerouslySetInnerHTML={{ __html: blog.content }} 
       />
     </motion.div>
+    </>
   );
 };
 

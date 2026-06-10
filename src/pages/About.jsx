@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const About = () => {
   return (
+    <>
+    <Helmet>
+      <title>About Us | YouTube Thumbnail Download</title>
+      <meta name="description" content="Learn about ThumbDown, your reliable yt thumbnail downloader." />
+      <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
+    </Helmet>
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -18,6 +25,7 @@ const About = () => {
         <p style={{ marginTop: '1rem' }}>We hope you enjoy our tool as much as we enjoy offering it to you. If you have any questions or comments, please don't hesitate to contact us.</p>
       </div>
     </motion.div>
+    </>
   );
 };
 

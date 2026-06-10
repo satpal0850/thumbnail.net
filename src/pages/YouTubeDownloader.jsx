@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { Search, Download, Video, ClipboardPaste } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 
 const YouTubeDownloader = () => {
+  const { t } = useTranslation();
   const [url, setUrl] = useState('');
   const [thumbnails, setThumbnails] = useState(null);
   const [error, setError] = useState('');
@@ -30,7 +33,7 @@ const YouTubeDownloader = () => {
 
     const videoId = extractVideoId(url);
     if (!videoId) {
-      setError('Please enter a valid YouTube video URL.');
+      setError(t('error'));
       return;
     }
 
@@ -45,33 +48,37 @@ const YouTubeDownloader = () => {
     try {
       const isShort = url.toLowerCase().includes('/shorts/');
       
-      const proxies = [
-        `https://api.allorigins.win/raw?url=${encodeURIComponent(imgUrl)}`,
-        `https://corsproxy.io/?${encodeURIComponent(imgUrl)}`,
-        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(imgUrl)}`
-      ];
-      
-      let blobData = null;
-      for (let proxy of proxies) {
-        try {
-          const res = await fetch(proxy);
-          if (res.ok) {
-            blobData = await res.blob();
-            break;
+      const tryFetch = async (targetUrl) => {
+        const proxies = [
+          `https://wsrv.nl/?url=${encodeURIComponent(targetUrl)}`,
+          `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`,
+          `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`
+        ];
+        for (let proxy of proxies) {
+          try {
+            const res = await fetch(proxy);
+            if (res.ok) {
+              const blob = await res.blob();
+              // YouTube's 404 gray image is usually under 2KB. 
+              // If it's too small, it might be the 404 image.
+              if (blob.size > 2000) return blob;
+            }
+          } catch (e) {
+            // Ignore proxy errors and try the next one
           }
-        } catch (e) {
-          // ignore and try next
         }
+        return null;
+      };
+
+      let blobData = await tryFetch(imgUrl);
+
+      // If maxres fails (often 404s on older videos), fallback to hqdefault
+      if (!blobData && quality === 'maxres') {
+        blobData = await tryFetch(imgUrl.replace('maxresdefault.jpg', 'hqdefault.jpg'));
       }
-      
+
       if (!blobData) {
-        // Fallback if all proxies fail
-        const link = document.createElement('a');
-        link.href = imgUrl;
-        link.target = '_blank';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        alert('Failed to download image securely. The image might not be available.');
         return;
       }
 
@@ -118,12 +125,7 @@ const YouTubeDownloader = () => {
       }
     } catch (err) {
       console.error('Download error', err);
-      const link = document.createElement('a');
-      link.href = imgUrl;
-      link.target = '_blank';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      alert('An error occurred during download. Please try again.');
     }
   };
 
@@ -141,6 +143,12 @@ const YouTubeDownloader = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
     >
+      <Helmet>
+        <title>{t('title')} | YouTube Thumbnail Download</title>
+        <meta name="description" content={t('subtitle')} />
+        <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
+      </Helmet>
+
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
           <div style={{ background: 'rgba(255, 0, 0, 0.1)', padding: '1rem', borderRadius: '50%' }}>
@@ -148,10 +156,10 @@ const YouTubeDownloader = () => {
           </div>
         </div>
         <h1 style={{ fontSize: '2.5rem', fontWeight: '800', marginBottom: '1rem' }}>
-          YouTube Thumbnail Downloader
+          {t('title')}
         </h1>
         <p style={{ color: 'var(--text-secondary)' }}>
-          Paste a YouTube Video or Shorts link below to download the thumbnail in Orignal 4K quality.
+          {t('subtitle')}
         </p>
       </div>
 
@@ -159,12 +167,12 @@ const YouTubeDownloader = () => {
         <input
           type="text"
           className="url-input"
-          placeholder="Paste YouTube video or Shorts link here..."
+          placeholder={t('placeholder')}
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
-        <button type="button" className="paste-btn" onClick={handlePaste} title="Paste from clipboard">
-          <ClipboardPaste size={16} /> Paste
+        <button type="button" className="paste-btn" onClick={handlePaste} title={t('paste')}>
+          <ClipboardPaste size={16} /> {t('paste')}
         </button>
         <button type="submit" className="submit-btn">
           <Search size={20} />
@@ -185,27 +193,27 @@ const YouTubeDownloader = () => {
           transition={{ duration: 0.3 }}
         >
           <div className="glass-card primary-result">
-            <h3 style={{ marginBottom: '1rem', color: '#00f2fe' }}>Maximum Resolution</h3>
+            <h3 style={{ marginBottom: '1rem', color: '#00f2fe' }}>{t('maxRes')}</h3>
             <img src={thumbnails.maxres} alt="Max Res" style={imgStyle} />
             <button className="btn-primary" style={{ width: '100%' }} onClick={() => downloadImage(thumbnails.maxres, 'maxres')}>
-              <Download size={18} /> Original Quality
+              <Download size={18} /> {t('originalQuality')}
             </button>
           </div>
 
           <div className="secondary-results">
             <div className="glass-card">
-              <h3 style={{ marginBottom: '1rem', color: '#f8fafc' }}>High Resolution (SD)</h3>
+              <h3 style={{ marginBottom: '1rem', color: '#f8fafc' }}>{t('highRes')}</h3>
               <img src={thumbnails.sd} alt="SD Res" style={imgStyle} />
               <button className="btn-primary" style={{ width: '100%', background: 'rgba(255,255,255,0.1)', color: 'white' }} onClick={() => downloadImage(thumbnails.sd, 'sd')}>
-                <Download size={18} /> Download SD
+                <Download size={18} /> {t('downloadSD')}
               </button>
             </div>
             
             <div className="glass-card">
-              <h3 style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>Standard Resolution (HQ)</h3>
+              <h3 style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>{t('standardRes')}</h3>
               <img src={thumbnails.hq} alt="HQ Res" style={imgStyle} />
               <button className="btn-primary" style={{ width: '100%', background: 'rgba(255,255,255,0.05)', color: 'white' }} onClick={() => downloadImage(thumbnails.hq, 'hq')}>
-                <Download size={18} /> Download Normal
+                <Download size={18} /> {t('downloadNormal')}
               </button>
             </div>
           </div>
@@ -214,29 +222,29 @@ const YouTubeDownloader = () => {
 
       {/* SEO Content Section for AdSense */}
       <div className="glass-card" style={{ marginTop: '5rem', padding: '3rem', textAlign: 'left', lineHeight: '1.8', color: 'var(--text-secondary)' }}>
-        <h2 style={{ color: 'white', marginBottom: '1.5rem' }}>Free HD YouTube Thumbnail Downloader</h2>
+        <h2 style={{ color: 'white', marginBottom: '1.5rem' }}>{t('seoHeading')}</h2>
         <p style={{ marginBottom: '1rem' }}>
-          Welcome to the best <strong>youtube thumbnail downloader</strong> on the internet. Whether you are a content creator looking to analyze your competitors, a designer searching for inspiration, or someone who simply needs to save a cover image for a presentation, our tool makes <strong>youtube thumbnail download</strong> fast, easy, and completely free.
+          {t('seoP1')}
         </p>
         <p style={{ marginBottom: '1rem' }}>
-          Using our <strong>yt thumbnail downloader</strong>, you can extract images from any YouTube video or Short in seconds. We provide multiple resolution options, ensuring you get the crispest image possible. Simply copy the video link, paste it into our search bar, and let our <strong>thumbnail downloader</strong> do the heavy lifting.
+          {t('seoP2')}
         </p>
         
-        <h3 style={{ color: 'white', marginTop: '2rem', marginBottom: '1rem' }}>How to do a Thumbnail Download</h3>
+        <h3 style={{ color: 'white', marginTop: '2rem', marginBottom: '1rem' }}>{t('seoHowToHeading')}</h3>
         <ol style={{ marginLeft: '1.5rem', marginBottom: '1.5rem' }}>
-          <li>Open the YouTube app or website and find the video whose thumbnail you want.</li>
-          <li>Click the "Share" button and select "Copy Link".</li>
-          <li>Return to our <strong>youtube thumbnail downloader</strong> page.</li>
-          <li>Paste the link into the input box and hit the search icon.</li>
-          <li>Click "Original Quality" to complete your <strong>thumbnail download</strong>.</li>
+          <li>{t('seoHowTo1')}</li>
+          <li>{t('seoHowTo2')}</li>
+          <li>{t('seoHowTo3')}</li>
+          <li>{t('seoHowTo4')}</li>
+          <li>{t('seoHowTo5')}</li>
         </ol>
 
-        <h3 style={{ color: 'white', marginTop: '2rem', marginBottom: '1rem' }}>Why use a YT Thumbnail Downloader?</h3>
+        <h3 style={{ color: 'white', marginTop: '2rem', marginBottom: '1rem' }}>{t('seoWhyHeading')}</h3>
         <p>
-          High-quality thumbnails are the backbone of a successful video strategy. By using a reliable <strong>yt thumbnail downloader</strong>, you can study the text placement, color theory, and facial expressions used by top creators in your niche. All downloads are executed securely in your browser without the need to install any shady extensions or software.
+          {t('seoWhyP')}
         </p>
         <p style={{ marginTop: '1rem' }}>
-          Want to learn more about optimizing your videos? Check out our <Link to="/blog/ultimate-guide-youtube-thumbnail-sizes" style={{color: '#00f2fe', textDecoration: 'none'}}>Ultimate Guide to YouTube Thumbnail Sizes</Link> or discover <Link to="/blog" style={{color: '#00f2fe', textDecoration: 'none'}}>more YouTube SEO tips in our blog</Link> to help your channel grow faster!
+          {t('seoLinkP')}
         </p>
       </div>
     </motion.div>

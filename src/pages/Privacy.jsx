@@ -1,7 +1,14 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 
 const Privacy = () => {
   return (
+    <>
+    <Helmet>
+      <title>Privacy Policy | YouTube Thumbnail Download</title>
+      <meta name="description" content="Privacy Policy for ThumbDown, a free youtube thumbnail downloader." />
+      <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
+    </Helmet>
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -27,6 +34,7 @@ const Privacy = () => {
         <p style={{ marginTop: '2rem' }}>If you have any questions, please contact us via the Contact Us page.</p>
       </div>
     </motion.div>
+    </>
   );
 };
 

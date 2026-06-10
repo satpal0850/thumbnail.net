@@ -1,7 +1,14 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 
 const Terms = () => {
   return (
+    <>
+    <Helmet>
+      <title>Terms and Conditions | YouTube Thumbnail Download</title>
+      <meta name="description" content="Terms and Conditions for ThumbDown, a free youtube thumbnail downloader." />
+      <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
+    </Helmet>
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -26,6 +33,7 @@ const Terms = () => {
         <p>In no event shall ThumbDown or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on our website.</p>
       </div>
     </motion.div>
+    </>
   );
 };
 
