@@ -43,20 +43,96 @@ const YouTubeDownloader = () => {
 
   const downloadImage = async (imgUrl, quality) => {
     try {
-      const response = await fetch(imgUrl);
-      const blob = await response.blob();
-      const blobUrl = window.URL.createObjectURL(blob);
+      const isShort = url.toLowerCase().includes('/shorts/');
+      
+      const proxies = [
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(imgUrl)}`,
+        `https://corsproxy.io/?${encodeURIComponent(imgUrl)}`,
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(imgUrl)}`
+      ];
+      
+      let blobData = null;
+      for (let proxy of proxies) {
+        try {
+          const res = await fetch(proxy);
+          if (res.ok) {
+            blobData = await res.blob();
+            break;
+          }
+        } catch (e) {
+          // ignore and try next
+        }
+      }
+      
+      if (!blobData) {
+        // Fallback if all proxies fail
+        const link = document.createElement('a');
+        link.href = imgUrl;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        return;
+      }
+
+      if (isShort) {
+        const objectUrl = window.URL.createObjectURL(blobData);
+        const img = new Image();
+        
+        await new Promise((resolve, reject) => {
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = objectUrl;
+        });
+        
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const cropWidth = img.height * (9 / 16);
+        const sx = (img.width - cropWidth) / 2;
+        
+        canvas.width = cropWidth;
+        canvas.height = img.height;
+        ctx.drawImage(img, sx, 0, cropWidth, img.height, 0, 0, cropWidth, img.height);
+        
+        canvas.toBlob((blob) => {
+          const blobUrl = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = blobUrl;
+          link.download = `youtube-short-${quality}.jpg`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(blobUrl);
+          window.URL.revokeObjectURL(objectUrl);
+        }, 'image/jpeg', 0.95);
+      } else {
+        // Normal video download
+        const blobUrl = window.URL.createObjectURL(blobData);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = `youtube-thumbnail-${quality}.jpg`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(blobUrl);
+      }
+    } catch (err) {
+      console.error('Download error', err);
       const link = document.createElement('a');
-      link.href = blobUrl;
-      link.download = `youtube-thumbnail-${quality}.jpg`;
+      link.href = imgUrl;
+      link.target = '_blank';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(blobUrl);
-    } catch (err) {
-      console.error('Download failed', err);
-      window.open(imgUrl, '_blank');
     }
+  };
+
+  const isShortUrl = url.includes('/shorts/');
+  const imgStyle = {
+    width: '100%',
+    borderRadius: '8px',
+    marginBottom: '1rem',
+    ...(isShortUrl ? { aspectRatio: '9/16', objectFit: 'cover', maxWidth: '350px', margin: '0 auto 1rem', display: 'block' } : {})
   };
 
   return (
@@ -110,7 +186,7 @@ const YouTubeDownloader = () => {
         >
           <div className="glass-card primary-result">
             <h3 style={{ marginBottom: '1rem', color: '#00f2fe' }}>Maximum Resolution</h3>
-            <img src={thumbnails.maxres} alt="Max Res" style={{ width: '100%', borderRadius: '8px', marginBottom: '1rem' }} />
+            <img src={thumbnails.maxres} alt="Max Res" style={imgStyle} />
             <button className="btn-primary" style={{ width: '100%' }} onClick={() => downloadImage(thumbnails.maxres, 'maxres')}>
               <Download size={18} /> Original Quality
             </button>
@@ -119,7 +195,7 @@ const YouTubeDownloader = () => {
           <div className="secondary-results">
             <div className="glass-card">
               <h3 style={{ marginBottom: '1rem', color: '#f8fafc' }}>High Resolution (SD)</h3>
-              <img src={thumbnails.sd} alt="SD Res" style={{ width: '100%', borderRadius: '8px', marginBottom: '1rem' }} />
+              <img src={thumbnails.sd} alt="SD Res" style={imgStyle} />
               <button className="btn-primary" style={{ width: '100%', background: 'rgba(255,255,255,0.1)', color: 'white' }} onClick={() => downloadImage(thumbnails.sd, 'sd')}>
                 <Download size={18} /> Download SD
               </button>
@@ -127,7 +203,7 @@ const YouTubeDownloader = () => {
             
             <div className="glass-card">
               <h3 style={{ marginBottom: '1rem', color: 'var(--text-secondary)' }}>Standard Resolution (HQ)</h3>
-              <img src={thumbnails.hq} alt="HQ Res" style={{ width: '100%', borderRadius: '8px', marginBottom: '1rem' }} />
+              <img src={thumbnails.hq} alt="HQ Res" style={imgStyle} />
               <button className="btn-primary" style={{ width: '100%', background: 'rgba(255,255,255,0.05)', color: 'white' }} onClick={() => downloadImage(thumbnails.hq, 'hq')}>
                 <Download size={18} /> Download Normal
               </button>
