@@ -15,37 +15,24 @@ const validLangs = ['en', 'es', 'hi', 'ko', 'sl', 'pt', 'et', 'zh-TW', 'lt', 'sr
 
 const domain = 'https://yourwebsite.com'; 
 
-let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n`;
-
-const pages = [
-  '',
-  '/about',
-  '/contact',
-  '/privacy-policy',
-  '/terms',
-  '/blog',
-];
-
-for (const b of blogs) {
-  pages.push(`/blog/${b.id}`);
-}
+let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
 const today = new Date().toISOString().split('T')[0];
 
+// 1. Add Homepage for all languages
 for (const lang of validLangs) {
   const prefix = lang === 'en' ? '' : `/${lang}`;
-  for (const page of pages) {
-    const loc = `${domain}${prefix}${page}`;
-    xml += `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${page === '' ? '1.0' : '0.8'}</priority>\n`;
-    
-    for (const altLang of validLangs) {
-      const altPrefix = altLang === 'en' ? '' : `/${altLang}`;
-      const altLoc = `${domain}${altPrefix}${page}`;
-      xml += `    <xhtml:link rel="alternate" hreflang="${altLang}" href="${altLoc}" />\n`;
-    }
-    
-    xml += `  </url>\n`;
-  }
+  const loc = `${domain}${prefix}/`; // ensuring trailing slash or empty for root, but let's use `${domain}${prefix}` so it's clean
+  const finalLoc = loc.endsWith('/') && loc !== `${domain}/` ? loc.slice(0, -1) : loc === `${domain}/` ? domain : loc; // Fix trailing slashes
+  
+  xml += `  <url>\n    <loc>${finalLoc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
+}
+
+// 2. Add Blog pages (English only)
+xml += `  <url>\n    <loc>${domain}/blog</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+
+for (const b of blogs) {
+  xml += `  <url>\n    <loc>${domain}/blog/${b.id}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
 }
 
 xml += `</urlset>`;

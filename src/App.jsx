@@ -12,27 +12,28 @@ import BlogPost from './pages/BlogPost';
 
 export const validLangs = ['en', 'es', 'hi', 'ko', 'sl', 'pt', 'et', 'zh-TW', 'lt', 'sr', 'nl', 'cs', 'vi', 'uz', 'bg', 'ca', 'id', 'pl', 'it', 'ar'];
 
-const AppLayout = ({ lang }) => {
+const AppLayout = ({ lang, children }) => {
   const { i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   
+  // If we're not on the homepage, force language to English in the UI
+  const isHomepage = location.pathname === '/' || validLangs.some(l => location.pathname === `/${l}` || location.pathname === `/${l}/`);
+  const effectiveLang = isHomepage ? lang : 'en';
+  
   useEffect(() => {
-    i18n.changeLanguage(lang);
-    document.documentElement.lang = lang;
-  }, [lang, i18n]);
+    i18n.changeLanguage(effectiveLang);
+    document.documentElement.lang = effectiveLang;
+  }, [effectiveLang, i18n]);
 
-  const prefix = lang === 'en' ? '' : `/${lang}`;
+  const prefix = effectiveLang === 'en' ? '' : `/${effectiveLang}`;
   
   const handleLangChange = (e) => {
     const newLang = e.target.value;
-    let pathWithoutLang = location.pathname;
-    if (lang !== 'en') {
-      pathWithoutLang = location.pathname.replace(new RegExp(`^/${lang}`), '') || '/';
-    }
     const newPrefix = newLang === 'en' ? '' : `/${newLang}`;
-    const newPath = `${newPrefix}${pathWithoutLang === '/' ? '' : pathWithoutLang}` || '/';
-    navigate(newPath);
+    // Always navigate back to the translated homepage if they change language, 
+    // because other pages do not support translation.
+    navigate(newPrefix || '/');
   };
 
   return (
@@ -43,25 +44,20 @@ const AppLayout = ({ lang }) => {
           <span>Thumb<span className="gradient-text">Down</span></span>
         </Link>
         <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-          <select value={lang} onChange={handleLangChange} style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', color: 'white', border: '1px solid var(--border-color)', cursor: 'pointer', outline: 'none' }}>
-            {validLangs.map(l => <option key={l} value={l} style={{color: 'black'}}>{l.toUpperCase()}</option>)}
-          </select>
-          <Link to={`${prefix}/blog`} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '600' }}>
+          {/* Only show language dropdown on the homepage */}
+          {isHomepage && (
+            <select value={effectiveLang} onChange={handleLangChange} style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', color: 'white', border: '1px solid var(--border-color)', cursor: 'pointer', outline: 'none' }}>
+              {validLangs.map(l => <option key={l} value={l} style={{color: 'black'}}>{l.toUpperCase()}</option>)}
+            </select>
+          )}
+          <Link to={`/blog`} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '600' }}>
             <BookOpen size={20} /> Blog
           </Link>
         </div>
       </nav>
       
       <main style={{ flexGrow: 1 }}>
-        <Routes>
-          <Route path="/" element={<YouTubeDownloader />} />
-          <Route path="/blog" element={<BlogList />} />
-          <Route path="/blog/:id" element={<BlogPost />} />
-          <Route path="/privacy-policy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        {children}
       </main>
       
       <footer style={{ marginTop: '4rem', padding: '3rem 0', borderTop: '1px solid var(--border-color)' }}>
@@ -79,17 +75,17 @@ const AppLayout = ({ lang }) => {
           <div style={{ flex: '1 1 200px' }}>
             <h4 style={{ color: 'white', marginBottom: '1rem', fontSize: '1.1rem' }}>Legal</h4>
             <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <li><Link to={`${prefix}/privacy-policy`} style={{ color: 'var(--text-secondary)' }}>Privacy Policy</Link></li>
-              <li><Link to={`${prefix}/terms`} style={{ color: 'var(--text-secondary)' }}>Terms & Conditions</Link></li>
+              <li><Link to={`/privacy-policy`} style={{ color: 'var(--text-secondary)' }}>Privacy Policy</Link></li>
+              <li><Link to={`/terms`} style={{ color: 'var(--text-secondary)' }}>Terms & Conditions</Link></li>
             </ul>
           </div>
 
           <div style={{ flex: '1 1 200px' }}>
             <h4 style={{ color: 'white', marginBottom: '1rem', fontSize: '1.1rem' }}>Company</h4>
             <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <li><Link to={`${prefix}/about`} style={{ color: 'var(--text-secondary)' }}>About Us</Link></li>
-              <li><Link to={`${prefix}/contact`} style={{ color: 'var(--text-secondary)' }}>Contact Us</Link></li>
-              <li><Link to={`${prefix}/blog`} style={{ color: 'var(--text-secondary)' }}>Blog & Resources</Link></li>
+              <li><Link to={`/about`} style={{ color: 'var(--text-secondary)' }}>About Us</Link></li>
+              <li><Link to={`/contact`} style={{ color: 'var(--text-secondary)' }}>Contact Us</Link></li>
+              <li><Link to={`/blog`} style={{ color: 'var(--text-secondary)' }}>Blog & Resources</Link></li>
             </ul>
           </div>
         </div>
@@ -107,9 +103,20 @@ function App() {
     <Router>
       <Routes>
         {validLangs.filter(l => l !== 'en').map(lang => (
-          <Route key={lang} path={`/${lang}/*`} element={<AppLayout lang={lang} />} />
+          <Route key={lang} path={`/${lang}`} element={<AppLayout lang={lang}><YouTubeDownloader /></AppLayout>} />
         ))}
-        <Route path="/*" element={<AppLayout lang="en" />} />
+        <Route path="/" element={<AppLayout lang="en"><YouTubeDownloader /></AppLayout>} />
+        
+        {/* Other pages (English only) */}
+        <Route path="/blog" element={<AppLayout lang="en"><BlogList /></AppLayout>} />
+        <Route path="/blog/:id" element={<AppLayout lang="en"><BlogPost /></AppLayout>} />
+        <Route path="/privacy-policy" element={<AppLayout lang="en"><Privacy /></AppLayout>} />
+        <Route path="/terms" element={<AppLayout lang="en"><Terms /></AppLayout>} />
+        <Route path="/about" element={<AppLayout lang="en"><About /></AppLayout>} />
+        <Route path="/contact" element={<AppLayout lang="en"><Contact /></AppLayout>} />
+        
+        {/* Fallback for undefined translated routes */}
+        <Route path="/*" element={<AppLayout lang="en"><YouTubeDownloader /></AppLayout>} />
       </Routes>
     </Router>
   );
