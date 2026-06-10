@@ -1,177 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://yourwebsite.com</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/es</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/hi</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/ko</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/sl</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/pt</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/et</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/zh-TW</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/lt</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/sr</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/nl</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/cs</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/vi</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/uz</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/bg</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/ca</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/id</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/pl</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/it</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/ar</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/blog</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/blog/ultimate-guide-youtube-thumbnail-sizes</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/blog/why-high-quality-thumbnails-secret-to-growth</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/blog/how-to-download-youtube-thumbnail</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/blog/5-common-thumbnail-mistakes</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/blog/psychology-of-clicking-great-thumbnail</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/blog/best-free-tools-design-thumbnails</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/blog/ab-testing-thumbnails-skyrocket-views</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://yourwebsite.com/blog/youtube-seo-basics</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<loc>https://yourwebsite.com</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/es</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/hi</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/ko</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/sl</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/pt</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/et</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/zh-TW</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/lt</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/sr</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/nl</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/cs</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/vi</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/uz</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/bg</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/ca</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/id</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/pl</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/it</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/ar</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/blog</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/blog/ultimate-guide-youtube-thumbnail-sizes</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/blog/why-high-quality-thumbnails-secret-to-growth</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/blog/how-to-download-youtube-thumbnail</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/blog/5-common-thumbnail-mistakes</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/blog/psychology-of-clicking-great-thumbnail</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/blog/best-free-tools-design-thumbnails</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/blog/ab-testing-thumbnails-skyrocket-views</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://thumbnail-eta-nine.vercel.app/blog/youtube-seo-basics</loc>
+<lastmod>2026-06-10</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
+</url>
 </urlset>

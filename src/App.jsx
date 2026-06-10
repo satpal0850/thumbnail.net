@@ -9,6 +9,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import BlogList from './pages/BlogList';
 import BlogPost from './pages/BlogPost';
+import NotFound from './pages/NotFound';
 
 export const validLangs = ['en', 'es', 'hi', 'ko', 'sl', 'pt', 'et', 'zh-TW', 'lt', 'sr', 'nl', 'cs', 'vi', 'uz', 'bg', 'ca', 'id', 'pl', 'it', 'ar'];
 
@@ -115,8 +116,8 @@ function App() {
         <Route path="/about" element={<AppLayout lang="en"><About /></AppLayout>} />
         <Route path="/contact" element={<AppLayout lang="en"><Contact /></AppLayout>} />
         
-        {/* Fallback for undefined translated routes */}
-        <Route path="/*" element={<AppLayout lang="en"><YouTubeDownloader /></AppLayout>} />
+        {/* Fallback for undefined routes */}
+        <Route path="/*" element={<AppLayout lang="en"><NotFound /></AppLayout>} />
       </Routes>
     </Router>
   );
