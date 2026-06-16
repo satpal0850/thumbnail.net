@@ -35,6 +35,12 @@ for (const b of blogs) {
   xml += `  <url>\n    <loc>${domain}/blog/${b.id}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
 }
 
+// 3. Add static pages (English only)
+const staticPages = ['about', 'contact', 'privacy-policy', 'terms'];
+for (const p of staticPages) {
+  xml += `  <url>\n    <loc>${domain}/${p}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>\n`;
+}
+
 xml += `</urlset>`;
 
 fs.writeFileSync('./public/sitemap.xml', xml);
