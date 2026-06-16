@@ -23,7 +23,7 @@ const BlogList = () => {
           Creator <span className="gradient-text">Resources</span>
         </h1>
         <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto' }}>
-          Learn the secrets to YouTube growth, SEO, and thumbnail optimization from our detailed guides.
+          Learn the secrets to YouTube growth, SEO, and thumbnail optimization from our detailed guides. If you need to perform a <Link to="/" style={{color: '#00f2fe', textDecoration: 'underline'}}>youtube thumbnail download</Link>, you can head over to our homepage tool.
         </p>
       </div>
 

@@ -217,6 +217,24 @@ const YouTubeDownloader = () => {
         <title>{t('title')} | KlickThumb</title>
         <meta name="description" content={t('subtitle')} />
         <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "KlickThumb",
+            "alternateName": "KlickThumb YouTube Thumbnail Downloader",
+            "url": "https://klickthumb.pinsaver.cloud",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires JavaScript. Requires HTML5.",
+            "description": "Download high-quality YouTube video thumbnails and shorts covers in HD, SD, and standard resolutions for free with KlickThumb.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          })}
+        </script>
       </Helmet>
 
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
@@ -233,7 +251,7 @@ const YouTubeDownloader = () => {
         </p>
       </div>
 
-      <form onSubmit={handleSearch} className="input-group">
+      <form onSubmit={handleSearch} className="input-group" style={{ marginBottom: '1rem' }}>
         <input
           type="text"
           className="url-input"
@@ -248,6 +266,9 @@ const YouTubeDownloader = () => {
           <Search size={20} />
         </button>
       </form>
+      <div style={{ textAlign: 'center', marginTop: '-0.5rem', marginBottom: '3rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+        Need to copy a link? Visit the official <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" style={{ color: '#00f2fe', textDecoration: 'underline', fontWeight: '500' }}>YouTube</a> website.
+      </div>
 
       {error && (
         <div style={{ textAlign: 'center', color: '#ff4d4d', marginTop: '1rem' }}>
@@ -329,8 +350,8 @@ const YouTubeDownloader = () => {
         <p>
           {t('seoWhyP')}
         </p>
-        <p style={{ marginTop: '1rem' }}>
-          {t('seoLinkP')}
+        <p style={{ marginTop: '1rem', lineHeight: '1.8' }}>
+          To perform a fast and free <Link to="/" style={{color: '#00f2fe', textDecoration: 'underline', fontWeight: '600'}}>youtube thumbnail download</Link>, simply paste your video link in the downloader tool above. Want to learn more about optimizing your videos? Check out our <Link to="/blog/ultimate-guide-youtube-thumbnail-sizes" style={{color: '#00f2fe', textDecoration: 'underline', fontWeight: '600'}}>Ultimate Guide to YouTube Thumbnail Sizes</Link> or discover more YouTube SEO tips in our <Link to="/blog" style={{color: '#00f2fe', textDecoration: 'underline', fontWeight: '600'}}>blog</Link> to help your channel grow faster!
         </p>
       </div>
     </motion.div>
