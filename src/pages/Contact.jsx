@@ -6,8 +6,8 @@ const Contact = () => {
   return (
     <>
     <Helmet>
-      <title>Contact Us | YouTube Thumbnail Download</title>
-      <meta name="description" content="Contact ThumbDown for any inquiries regarding our youtube thumbnail downloader." />
+      <title>Contact Us | KlickThumb</title>
+      <meta name="description" content="Contact KlickThumb for any inquiries regarding our youtube thumbnail downloader." />
       <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
     </Helmet>
     <motion.div 

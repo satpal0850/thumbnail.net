@@ -5,6 +5,76 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 
+const otherDownloaders = [
+  {
+    name: 'TikTok Video Downloader',
+    link: 'https://ssstiktok.pinsaver.cloud/',
+    desc: 'Download high-quality TikTok videos without watermarks instantly.',
+    bgColor: 'rgba(0, 0, 0, 0.6)',
+    iconColor: '#00f2fe',
+    glowColor: 'rgba(254, 44, 85, 0.4)',
+    icon: (
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.07-2.89-.52-4.06-1.37-.28-.2-.53-.43-.77-.68v6.46c0 1.93-.65 3.86-1.97 5.23-1.41 1.48-3.52 2.37-5.59 2.37-2.6 0-5.11-1.39-6.38-3.66-1.57-2.73-1.12-6.52 1.13-8.73 1.5-1.48 3.61-2.23 5.72-2.03v4.06c-.84-.11-1.72.12-2.39.65-.89.7-.99 2.05-.22 2.91.68.79 1.87.95 2.74.39.43-.27.69-.73.69-1.24V.02z"/>
+      </svg>
+    )
+  },
+  {
+    name: 'Instagram Thumbnail Download',
+    link: 'https://pinsaver.cloud/instagram-thumbnail-download',
+    desc: 'Save post cover images and IG TV thumbnails in original quality.',
+    bgColor: 'rgba(225, 48, 108, 0.1)',
+    iconColor: '#e1306c',
+    glowColor: 'rgba(225, 48, 108, 0.4)',
+    icon: (
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+    )
+  },
+  {
+    name: 'Instagram Video Download',
+    link: 'https://pinsaver.cloud/',
+    desc: 'Download high-quality Instagram reels and videos in one click.',
+    bgColor: 'rgba(225, 48, 108, 0.1)',
+    iconColor: '#ff3008',
+    glowColor: 'rgba(225, 48, 108, 0.4)',
+    icon: (
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M23 7a2 2 0 0 0-2.45-1.45L16 7V5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2l4.55 1.45A2 2 0 0 0 23 17V7z"></path>
+      </svg>
+    )
+  },
+  {
+    name: 'Facebook Video Download',
+    link: 'https://pinsaver.cloud/',
+    desc: 'Easily download and save Facebook videos to your device gallery.',
+    bgColor: 'rgba(24, 119, 242, 0.1)',
+    iconColor: '#1877f2',
+    glowColor: 'rgba(24, 119, 242, 0.4)',
+    icon: (
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+    )
+  },
+  {
+    name: 'Download Snapchat Videos',
+    link: 'https://pinsaver.cloud/',
+    desc: 'Save your favorite Snapchat spotlight videos and stories instantly.',
+    bgColor: 'rgba(255, 252, 0, 0.1)',
+    iconColor: '#eab308',
+    glowColor: 'rgba(254, 240, 138, 0.4)',
+    icon: (
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M12 2c-3.78 0-6.68 2.66-6.68 6.36 0 2.27.97 3.59 1.63 4.22-.38.16-.76.38-1.12.66-.99.78-1.83 2.12-.89 3.26.47.57 1.4.37 2.16.19.46-.11.94-.23 1.4-.21.49.02.93.19 1.36.36.69.27 1.4.55 2.14.55s1.45-.28 2.14-.55c.43-.17.87-.34 1.36-.36.46-.02.94.1 1.4.21.76.18 1.69.38 2.16-.19.94-1.14.1-2.48-.89-3.26-.36-.28-.74-.5-1.12-.66.66-.63 1.63-1.95 1.63-4.22C18.68 4.66 15.78 2 12 2z"/>
+      </svg>
+    )
+  }
+];
+
 const YouTubeDownloader = () => {
   const { t } = useTranslation();
   const [url, setUrl] = useState('');
@@ -144,7 +214,7 @@ const YouTubeDownloader = () => {
       exit={{ opacity: 0, y: -20 }}
     >
       <Helmet>
-        <title>{t('title')} | YouTube Thumbnail Download</title>
+        <title>{t('title')} | KlickThumb</title>
         <meta name="description" content={t('subtitle')} />
         <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
       </Helmet>
@@ -219,6 +289,22 @@ const YouTubeDownloader = () => {
           </div>
         </motion.div>
       )}
+
+      {/* Quick Downloader Tools Grid */}
+      <div className="downloader-tools-section">
+        <h2 className="downloader-tools-title">Our Other Downloaders</h2>
+        <div className="downloader-tools-grid">
+          {otherDownloaders.map((tool, idx) => (
+            <a key={idx} href={tool.link} target="_blank" rel="noopener noreferrer" className="downloader-tool-card" style={{ '--hover-glow': tool.glowColor }}>
+              <div className="downloader-tool-icon" style={{ background: tool.bgColor, color: tool.iconColor }}>
+                {tool.icon}
+              </div>
+              <h3 className="downloader-tool-name">{tool.name}</h3>
+              <p className="downloader-tool-desc">{tool.desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
 
       {/* SEO Content Section for AdSense */}
       <div className="glass-card" style={{ marginTop: '5rem', padding: '3rem', textAlign: 'left', lineHeight: '1.8', color: 'var(--text-secondary)' }}>

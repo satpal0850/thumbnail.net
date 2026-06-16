@@ -7,7 +7,7 @@ const NotFound = () => {
   return (
     <div style={{ textAlign: 'center', padding: '100px 20px', minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <Helmet>
-        <title>404 - Page Not Found | ThumbDown</title>
+        <title>404 - Page Not Found | KlickThumb</title>
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       

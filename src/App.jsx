@@ -42,7 +42,7 @@ const AppLayout = ({ lang, children }) => {
       <nav className="navbar">
         <Link to={`${prefix}/`} className="logo">
           <DownloadCloud className="gradient-text" size={32} />
-          <span>Thumb<span className="gradient-text">Down</span></span>
+          <span>Klick<span className="gradient-text">Thumb</span></span>
         </Link>
         <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
           {/* Only show language dropdown on the homepage */}
@@ -66,7 +66,7 @@ const AppLayout = ({ lang, children }) => {
           <div style={{ flex: '1 1 300px' }}>
             <Link to={`${prefix}/`} className="logo" style={{ marginBottom: '1rem', display: 'inline-flex' }}>
               <DownloadCloud className="gradient-text" size={24} />
-              <span style={{ fontSize: '1.2rem' }}>Thumb<span className="gradient-text">Down</span></span>
+              <span style={{ fontSize: '1.2rem' }}>Klick<span className="gradient-text">Thumb</span></span>
             </Link>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6' }}>
               The fastest, easiest way to download high-quality YouTube thumbnails for free. No watermarks, no sign-ups required.
@@ -92,7 +92,7 @@ const AppLayout = ({ lang, children }) => {
         </div>
         
         <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '2rem' }}>
-          <p>© {new Date().getFullYear()} ThumbDown. Professional YouTube Thumbnail Downloader.</p>
+          <p>© {new Date().getFullYear()} KlickThumb. Professional YouTube Thumbnail Downloader.</p>
         </div>
       </footer>
     </div>
