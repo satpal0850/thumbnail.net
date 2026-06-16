@@ -13,7 +13,7 @@ const blogs = [
 
 const validLangs = ['en', 'es', 'hi', 'ko', 'sl', 'pt', 'et', 'zh-TW', 'lt', 'sr', 'nl', 'cs', 'vi', 'uz', 'bg', 'ca', 'id', 'pl', 'it', 'ar'];
 
-const domain = 'https://yourwebsite.com'; 
+const domain = 'https://klickthumb.pinsaver.cloud'; 
 
 let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
