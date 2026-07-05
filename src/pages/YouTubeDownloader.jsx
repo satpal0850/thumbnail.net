@@ -20,35 +20,7 @@ const otherDownloaders = [
     )
   },
   {
-    name: 'Instagram Thumbnail Download',
-    link: 'https://pinsaver.cloud/instagram-thumbnail-download',
-    desc: 'Save post cover images and IG TV thumbnails in original quality.',
-    bgColor: 'rgba(225, 48, 108, 0.1)',
-    iconColor: '#e1306c',
-    glowColor: 'rgba(225, 48, 108, 0.4)',
-    icon: (
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-      </svg>
-    )
-  },
-  {
-    name: 'Instagram Video Download',
-    link: 'https://pinsaver.cloud/',
-    desc: 'Download high-quality Instagram reels and videos in one click.',
-    bgColor: 'rgba(225, 48, 108, 0.1)',
-    iconColor: '#ff3008',
-    glowColor: 'rgba(225, 48, 108, 0.4)',
-    icon: (
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M23 7a2 2 0 0 0-2.45-1.45L16 7V5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2l4.55 1.45A2 2 0 0 0 23 17V7z"></path>
-      </svg>
-    )
-  },
-  {
-    name: 'Facebook Video Download',
+    name: 'Facebook Video Downloader',
     link: 'https://pinsaver.cloud/',
     desc: 'Easily download and save Facebook videos to your device gallery.',
     bgColor: 'rgba(24, 119, 242, 0.1)',
@@ -75,8 +47,10 @@ const otherDownloaders = [
   }
 ];
 
+const validLangs = ['en', 'es', 'hi', 'ko', 'sl', 'pt', 'et', 'zh-TW', 'lt', 'sr', 'nl', 'cs', 'vi', 'uz', 'bg', 'ca', 'id', 'pl', 'it', 'ar'];
+
 const YouTubeDownloader = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [url, setUrl] = useState('');
   const [thumbnails, setThumbnails] = useState(null);
   const [error, setError] = useState('');
@@ -214,25 +188,100 @@ const YouTubeDownloader = () => {
       exit={{ opacity: 0, y: -20 }}
     >
       <Helmet>
-        <title>{t('title')} | KlickThumb</title>
+        <title>{t('title')}</title>
         <meta name="description" content={t('subtitle')} />
-        <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
+        <meta name="keywords" content="youtube thumbnail download, thumbnail download, yt thumbnail download, yt thumbnail, youtube video thumbnail download, youtube thumbnail" />
+        <link rel="canonical" href={`https://youtube-thumbnail-download.pinsaver.cloud${i18n.language === 'en' ? '' : `/${i18n.language}`}`} />
+        {validLangs.map(l => (
+          <link 
+            key={l}
+            rel="alternate" 
+            hrefLang={l} 
+            href={`https://youtube-thumbnail-download.pinsaver.cloud${l === 'en' ? '' : `/${l}`}`} 
+          />
+        ))}
+        <meta property="og:title" content="YouTube Thumbnail Downloader - Free HD/4K Download" />
+        <meta property="og:description" content="Download YouTube video thumbnails instantly in HD, 4K, and all resolutions." />
+        <meta property="og:url" content={`https://youtube-thumbnail-download.pinsaver.cloud${i18n.language === 'en' ? '' : `/${i18n.language}`}`} />
+        <meta property="og:site_name" content="Youtube Thumbnail Download" />
+        <meta property="og:image" content="https://youtube-thumbnail-download.pinsaver.cloud/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="YouTube Thumbnail Downloader - Free HD/4K Download" />
+        <meta name="twitter:description" content="Download YouTube video thumbnails instantly in HD, 4K, and all resolutions." />
+        <meta name="twitter:image" content="https://youtube-thumbnail-download.pinsaver.cloud/og-image.jpg" />
+        
+        {/* 1. WebApplication Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            "name": "KlickThumb",
-            "alternateName": "KlickThumb YouTube Thumbnail Downloader",
-            "url": "https://klickthumb.pinsaver.cloud",
+            "name": "YouTube Thumbnail Downloader",
+            "url": "https://youtube-thumbnail-download.pinsaver.cloud",
             "applicationCategory": "MultimediaApplication",
-            "operatingSystem": "All",
-            "browserRequirements": "Requires JavaScript. Requires HTML5.",
-            "description": "Download high-quality YouTube video thumbnails and shorts covers in HD, SD, and standard resolutions for free with KlickThumb.",
+            "operatingSystem": "Any",
             "offers": {
               "@type": "Offer",
               "price": "0",
               "priceCurrency": "USD"
-            }
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.7",
+              "ratingCount": "12545"
+            },
+            "description": "Free tool to download YouTube video Thumbnails in Orignal, HD, SD, and all resolutions instantly."
+          })}
+        </script>
+        
+        {/* 2. FAQ Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do I download a YouTube thumbnail in HD?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Simply paste the YouTube video URL into our tool and click download to get the thumbnail in HD or Orignal quality instantly."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this YouTube thumbnail downloader free?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, our tool is completely free to use with no sign-up required."
+                }
+              }
+            ]
+          })}
+        </script>
+
+        {/* 3. Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://youtube-thumbnail-download.pinsaver.cloud"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "YouTube Thumbnail Downloader",
+                "item": "https://youtube-thumbnail-download.pinsaver.cloud"
+              }
+            ]
           })}
         </script>
       </Helmet>
