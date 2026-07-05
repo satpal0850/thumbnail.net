@@ -8,9 +8,11 @@ const BlogList = () => {
   return (
     <>
     <Helmet>
-      <title>Blog | YouTube Thumbnail Download</title>
+      <title>Blog | Youtube Thumbnail Download</title>
       <meta name="description" content="Read our latest tips and guides on using a youtube thumbnail downloader to grow your channel." />
       <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
+      <link rel="canonical" href="https://youtube-thumbnail-download.pinsaver.cloud/blog" />
+      <meta name="robots" content="index, follow" />
     </Helmet>
     <motion.div 
       initial={{ opacity: 0 }}

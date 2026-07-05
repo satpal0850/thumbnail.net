@@ -40,14 +40,14 @@ const AppLayout = ({ lang, children }) => {
   return (
     <div className="container" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <nav className="navbar">
-        <Link to={`${prefix}/`} className="logo">
+        <Link to={prefix || '/'} className="logo">
           <DownloadCloud className="gradient-text" size={32} />
           <span>Youtube Thumbnail <span className="gradient-text">Download</span></span>
         </Link>
         <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
           {/* Only show language dropdown on the homepage */}
           {isHomepage && (
-            <select value={effectiveLang} onChange={handleLangChange} style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', color: 'white', border: '1px solid var(--border-color)', cursor: 'pointer', outline: 'none' }}>
+            <select aria-label="Select Language" value={effectiveLang} onChange={handleLangChange} style={{ padding: '0.5rem', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', color: 'white', border: '1px solid var(--border-color)', cursor: 'pointer', outline: 'none' }}>
               {validLangs.map(l => <option key={l} value={l} style={{color: 'black'}}>{l.toUpperCase()}</option>)}
             </select>
           )}
@@ -64,7 +64,7 @@ const AppLayout = ({ lang, children }) => {
       <footer style={{ marginTop: '4rem', padding: '3rem 0', borderTop: '1px solid var(--border-color)' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '2rem', marginBottom: '2rem' }}>
           <div style={{ flex: '1 1 300px' }}>
-            <Link to={`${prefix}/`} className="logo" style={{ marginBottom: '1rem', display: 'inline-flex' }}>
+            <Link to={prefix || '/'} className="logo" style={{ marginBottom: '1rem', display: 'inline-flex' }}>
               <DownloadCloud className="gradient-text" size={24} />
               <span style={{ fontSize: '1.2rem' }}>Youtube Thumbnail <span className="gradient-text">Download</span></span>
             </Link>

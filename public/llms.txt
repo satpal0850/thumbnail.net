@@ -1,0 +1,11 @@
+# Youtube Thumbnail Download
+
+Youtube Thumbnail Download is a free, fast web utility to extract and download YouTube video thumbnails and Shorts covers in all resolutions (HD, HQ, SD, Normal).
+
+## Pages
+- [Home](https://youtube-thumbnail-download.pinsaver.cloud/) - The main downloader tool.
+- [About Us](https://youtube-thumbnail-download.pinsaver.cloud/about) - Information about the tool.
+- [Contact Us](https://youtube-thumbnail-download.pinsaver.cloud/contact) - Contact information.
+- [Privacy Policy](https://youtube-thumbnail-download.pinsaver.cloud/privacy-policy) - Privacy policy page.
+- [Terms & Conditions](https://youtube-thumbnail-download.pinsaver.cloud/terms) - Terms and conditions page.
+- [Blog](https://youtube-thumbnail-download.pinsaver.cloud/blog) - Guides and tips for content creators.

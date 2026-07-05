@@ -191,6 +191,7 @@ const YouTubeDownloader = () => {
         <title>{t('title')}</title>
         <meta name="description" content={t('subtitle')} />
         <meta name="keywords" content="youtube thumbnail download, thumbnail download, yt thumbnail download, yt thumbnail, youtube video thumbnail download, youtube thumbnail" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`https://youtube-thumbnail-download.pinsaver.cloud${i18n.language === 'en' ? '' : `/${i18n.language}`}`} />
         {validLangs.map(l => (
           <link 
@@ -311,7 +312,7 @@ const YouTubeDownloader = () => {
         <button type="button" className="paste-btn" onClick={handlePaste} title={t('paste')}>
           <ClipboardPaste size={16} /> {t('paste')}
         </button>
-        <button type="submit" className="submit-btn">
+        <button type="submit" className="submit-btn" aria-label="Search">
           <Search size={20} />
         </button>
       </form>

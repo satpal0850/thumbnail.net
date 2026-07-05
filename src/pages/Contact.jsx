@@ -9,6 +9,8 @@ const Contact = () => {
       <title>Contact Us | Youtube Thumbnail Download</title>
       <meta name="description" content="Contact Youtube Thumbnail Download for any inquiries regarding our youtube thumbnail downloader." />
       <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
+      <link rel="canonical" href="https://youtube-thumbnail-download.pinsaver.cloud/contact" />
+      <meta name="robots" content="index, follow" />
     </Helmet>
     <motion.div 
       initial={{ opacity: 0, y: 20 }}

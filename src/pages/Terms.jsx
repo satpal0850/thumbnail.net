@@ -8,6 +8,8 @@ const Terms = () => {
       <title>Terms and Conditions | Youtube Thumbnail Download</title>
       <meta name="description" content="Terms and Conditions for Youtube Thumbnail Download, a free youtube thumbnail downloader." />
       <meta name="keywords" content="youtube thumbnail download, thumbnail download, thumbnail downloader, yt thumbnail downloader, youtube thumbnail downloader" />
+      <link rel="canonical" href="https://youtube-thumbnail-download.pinsaver.cloud/terms" />
+      <meta name="robots" content="index, follow" />
     </Helmet>
     <motion.div 
       initial={{ opacity: 0, y: 20 }}

@@ -388,3 +388,19 @@ footer {
   }
 }
 
+/* Global Mobile Typography Improvements */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.85rem !important;
+  }
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  .navbar .logo {
+    font-size: 1.15rem !important;
+  }
+  .glass-card {
+    padding: 1.5rem !important;
+  }
+}
+
